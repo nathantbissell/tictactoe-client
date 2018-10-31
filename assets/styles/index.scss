@@ -1,1 +1,54 @@
 @import '~bootstrap/scss/bootstrap';
+
+header {
+  justify-content: center;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+h1 {
+  font-size: 50px;
+  color: #ABD1BB;
+}
+
+table {
+  border-collapse: collapse;
+  flex-direction: column;
+  left: 50%;
+  margin-left: 20%;
+  top: 50px;
+}
+
+.board-container {
+  height: 100%;
+  width: 100%;
+}
+
+.board {
+  width: 330px;
+}
+
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.box {
+  background-color: #ABD1BB;
+  border: 5px solid;
+  height: 100px;
+  width: 100px;
+}
+
+.box:hover {
+  background-color: #E5F1EA;
+  transition: .5s ease;
+}

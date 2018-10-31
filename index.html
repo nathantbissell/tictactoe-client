@@ -12,6 +12,51 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <header><h1>Tic Tac Toe!</h1></header>
+      <h2> Please login to the Tic Tac Toe Client</h2>
+      <form id="sign-up" class="border">
+          <fieldset>
+            <legend>Sign Up!</legend>
+            <input type="text" name="credentials[email]" placeholder="Email" />
+            <input type="password" name="credentials[password]" placeholder="Password" />
+            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm" />
+            <input type="submit" value="Sign up!" />
+          </fieldset>
+        </form>
+        <form id="sign-in" class="border">
+        <fieldset>
+          <legend>Sign In!</legend>
+          <input type="text" name="credentials[email]" placeholder="Email" />
+          <input type="password" name="credentials[password]" placeholder="Password" />
+          <input type="submit" value="Sign in!" />
+
+        </fieldset>
+        </form>
+
+          <form id="sign-out" class="border">
+            <fieldset>
+              <legend>Sign Out</legend>
+              <input type="submit" value="Sign Out"/>
+            </fieldset>
+          </form>
+
+          <div class="board-container flex-column">
+              <div class="board flex-wrap">
+                  <div class="box" id="0">0</div>
+                  <div class="box" id="1">1</div>
+                  <div class="box" id="2">2</div>
+                  <div class="box" id="3">3</div>
+                  <div class="box" id="4">4</div>
+                  <div class="box" id="5">5</div>
+                  <div class="box" id="6">6</div>
+                  <div class="box" id="7">7</div>
+                  <div class="box" id="8">8</div>
+            </div>
+          </div>
+            <div class="finishGame">
+              <div class="text"> </div>
+            </div>
+            <button onClick="startGame()">Restart Game</button>
+
     </body>
 </html>
