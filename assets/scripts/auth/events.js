@@ -1,7 +1,14 @@
 'use strict'
+// main pipeline for your code
+// events requires all of your different sections of code
+
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store.js')
+
+const p1 = 'X'
+const p2 = 'O'
 
 const onSignUp = event => {
   event.preventDefault()
@@ -38,10 +45,28 @@ const onSignOut = event => {
     .then(ui.signOutSuccess) // if your request was successful
     .catch(ui.signOutFailure) // if your request failed
 }
+const onSquareClick = event => {
+  event.preventDefault()
+  store.numberOfTurns++
+  //  const jq = $(event.target)
+  const js = (event.target)
+  if (store.numberOfTurns % 2 === 1) {
+    js.innerHTML = p1
+  } if (store.numberOfTurns % 2 === 0) {
+    js.innerHTML = p2
+  }
+}
+// && !jq.html
+// this function takes in an event (click) on one of the 9 squares
+//  const data = getFormFields(event.target)
+// when this function is called, either player x or O will mark
+
+// that square with their game piece.
 
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  onSquareClick
 }

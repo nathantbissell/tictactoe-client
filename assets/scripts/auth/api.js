@@ -19,6 +19,19 @@ const signIn = data => {
   })
 }
 
+const changePassword = function (data) {
+  console.log('data is ', data)
+  return $.ajax({
+    url: config.apiUrl + '/change-password',
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+    // data: data
+  })
+}
+
 const signOut = () => {
   return $.ajax({
     url: config.apiUrl + '/sign-out', // api url is stored in the file, called by config above
@@ -29,8 +42,22 @@ const signOut = () => {
   })
 }
 
+const gamePlay = data => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
-  signOut
+  signOut,
+  changePassword,
+  gamePlay
 }

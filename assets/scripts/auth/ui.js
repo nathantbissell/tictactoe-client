@@ -1,5 +1,5 @@
 'use strict'
-const store = require('../store.js')
+// const store = require('../store.js')
 
 const signUpSuccess = data => {
   $('#message').text('Signed up successfully') // .text() method allows us to set its text in the html
@@ -10,7 +10,6 @@ const signUpSuccess = data => {
 
 const signInSuccess = data => {
   console.log(data.user.token)
-  store.user = data.user
   $('#message').text('Signed in successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -58,6 +57,12 @@ const signOutSuccess = data => {
   $('#message').addClass('success')
   console.log('signOutSuccess ran. data is:', data)
 }
+
+// wrap in object, export object
+
+// $('.square').on('click', events.onSquareClick)
+
+// onSquareClick
 
 module.exports = {
   signUpSuccess,
