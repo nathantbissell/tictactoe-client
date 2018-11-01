@@ -9,6 +9,8 @@ const store = require('../store.js')
 
 const p1 = 'X'
 const p2 = 'O'
+const playerxMoves = []
+const playeroMoves = []
 
 const onSignUp = event => {
   event.preventDefault()
@@ -47,13 +49,23 @@ const onSignOut = event => {
 }
 const onSquareClick = event => {
   event.preventDefault()
-  store.numberOfTurns++
-  //  const jq = $(event.target)
   const js = (event.target)
-  if (store.numberOfTurns % 2 === 1) {
+  if (store.numberOfTurns % 2 === 1 && js.innerHTML === '') {
     js.innerHTML = p1
-  } if (store.numberOfTurns % 2 === 0) {
+    store.numberOfTurns++
+    playerxMoves.push(js.id)
+    console.log('player 1: ' + playerxMoves)
+    console.log('player x: ' + playeroMoves)
+    // forEach loop that takes the array of player x moves and searches for
+    // a match in the winningCombos array.
+  } if (store.numberOfTurns % 2 === 0 && js.innerHTML === '') {
     js.innerHTML = p2
+    store.numberOfTurns++
+    playeroMoves.push(js.id)
+    console.log('player 1: ' + playerxMoves)
+    console.log('player x: ' + playeroMoves)
+    // forEach loop that takes the array of player o moves and searches for
+    // a match in the winningCombos array.
   }
 }
 // && !jq.html

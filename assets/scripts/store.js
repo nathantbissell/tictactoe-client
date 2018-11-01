@@ -1,6 +1,6 @@
 'use strict'
 
-const numberOfTurns = 0
+const numberOfTurns = 1
 const p1 = 'X'
 const p2 = 'O'
 const currentPlayer = 'X'

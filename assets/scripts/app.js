@@ -10,4 +10,7 @@ $(() => {
   $('#sign-out').on('submit', events.onSignOut)
   $('#change-password').on('submit', events.onChangePassword)
   $('.box').on('click', events.onSquareClick)
+  $('.btn.btn-default').on('click', function (event) {
+    alert('the event target is', event.target)
+  })
 })

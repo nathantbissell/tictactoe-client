@@ -42,7 +42,7 @@ const signOut = () => {
   })
 }
 
-const gamePlay = data => {
+const newGame = data => {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -54,10 +54,35 @@ const gamePlay = data => {
   })
 }
 
+const newMove = data => {
+  return $.ajax({
+    url: config.apiUrl + '/games/:id',
+    method: 'PATCH',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
+const completeGames = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games/:id',
+    method: 'GET',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
-  gamePlay
+  newGame,
+  newMove,
+  completeGames
 }
