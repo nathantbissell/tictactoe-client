@@ -1,5 +1,5 @@
 TOKEN=
 
-curl --include --request POST 'https://tic-tac-toe-wdi.herokuapp.com/games' \
+curl --include --request POST http://tic-tac-toe.wdibos.com \
 --header "Content-Type: application/json" \
 --header "Authorization: "

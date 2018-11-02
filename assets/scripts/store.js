@@ -26,7 +26,7 @@ const gameBoard = [
 ]
 
 const winningCombos = [
-  ['0', '1', '2'],
+  [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
   [0, 3, 6],
@@ -35,7 +35,6 @@ const winningCombos = [
   [0, 4, 8],
   [2, 4, 6]
 ]
-
 // this function will run when turn number 4 has been ran (numberOfTurns > 4)
 // if true, run a loop that will take the array of player's current position points
 // compare to winningCombos, if any are true, game.end = true

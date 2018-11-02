@@ -1,6 +1,6 @@
 # TOKEN=<token> OLD_PASSWORD=123 NEW_PASSWORD=321 sh curl-scripts/json/change-password.sh
 
-curl "https://tic-tac-toe-wdi.herokuapp.com" \
+curl http://tic-tac-toe.wdibos.com \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \

@@ -99,20 +99,52 @@ const checkForWinner = function (array, player) {
       return square.innerHTML
     })
     console.log(results)
-    for (let i = 0; i < store.winningCombos.length; i++) {
-      return store.winningCombos.find(function (combo) {
-        console.log('combo 0: ' + results[combo[0]])
-        console.log('combo 1: ' + results[combo[1]])
-        console.log('combo 2: ' + results[combo[2]])
-        if (results[combo[0]] !== '' && ((results[combo[0]] === results[combo[1]]) && (results[combo[1]] === results[combo[2]]))) {
-          return winner
-        } else return false
-      })
-      //  console.log(player + ' is the winner')
-      // return
+    if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
+      console.log('Match 0-1-2 top row')
+    }
+    if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
+      console.log('Match 0-3-6 left column')
+    }
+    if (results[0] !== '' && results[0] === results[4] && results[4] === results[8]) {
+      console.log('Match 0-4-8 diagonal top left to bottom right')
+    }
+    if (results[1] !== '' && results[1] === results[4] && results[4] === results[7]) {
+      console.log('Match 1-4-7 center column')
+    }
+    if (results[2] !== '' && results[2] === results[5] && results[5] === results[8]) {
+      console.log('Match 2-5-8 right column')
+    }
+    if (results[3] !== '' && results[3] === results[4] && results[4] === results[5]) {
+      console.log('Match 3-4-5 center row')
+    }
+    if (results[2] !== '' && results[2] === results[4] && results[4] === results[6]) {
+      console.log('Match 2-4-6 bottom left to top right')
+    }
+    if (results[6] !== '' && results[6] === results[7] && results[7] === results[8]) {
+      console.log('Match 6-7-8 bottom row')
     }
   }
 }
+
+// for (let i = 0; i < store.winningCombos.length; i++) {
+// return store.winningCombos.find(function (combo) {
+//     console.log('combo 0: ' + results[combo[0]])
+//     console.log('combo 1: ' + results[combo[1]])
+//     console.log('combo 2: ' + results[combo[2]])
+//     if (results[combo[0]] !== '' && ((results[combo[0]] === results[combo[1]]) && (results[combo[1]] === results[combo[2]]))) {
+//       return winner
+//     } else {
+//       console.log('didnt work')
+//       return false
+//     }
+//   })
+//  console.log(player + ' is the winner')
+// return
+//     }
+//   }
+// }
+
+// }
 
 // this function takes in an event (click) on one of the 9 squares
 //  const data = getFormFields(event.target)

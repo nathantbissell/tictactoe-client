@@ -33,6 +33,7 @@ const changePassword = function (data) {
 }
 
 const createGame = function () {
+  console.log(store.user.token)
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
