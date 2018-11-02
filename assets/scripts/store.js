@@ -1,6 +1,8 @@
 'use strict'
+const store = {
+}
 
-const numberOfTurns = 1
+const numberOfTurns = 0
 const p1 = 'X'
 const p2 = 'O'
 const currentPlayer = 'X'
@@ -24,7 +26,7 @@ const gameBoard = [
 ]
 
 const winningCombos = [
-  [0, 1, 2],
+  ['0', '1', '2'],
   [3, 4, 5],
   [6, 7, 8],
   [0, 3, 6],
@@ -34,12 +36,9 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-const checkForWin = function (numberOfTurns) {
-
-  // this function will run when turn number 4 has been ran (numberOfTurns > 4)
-  // if true, run a loop that will take the array of player's current position points
-  // compare to winningCombos, if any are true, game.end = true
-}
+// this function will run when turn number 4 has been ran (numberOfTurns > 4)
+// if true, run a loop that will take the array of player's current position points
+// compare to winningCombos, if any are true, game.end = true
 
 // const user = !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // store token in here
@@ -51,6 +50,7 @@ const checkForWin = function (numberOfTurns) {
 // const userSignedIn = !!!!!!!!!!!!!!!!!!!!!!!!!
 
 module.exports = {
+  store,
   numberOfTurns,
   game,
   gameBoard,
@@ -58,7 +58,6 @@ module.exports = {
   p2,
   winningCombos,
   currentPlayer,
-  checkForWin,
   plMoves,
   p2Moves
 }

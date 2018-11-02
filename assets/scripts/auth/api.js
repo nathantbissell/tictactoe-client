@@ -32,6 +32,17 @@ const changePassword = function (data) {
   })
 }
 
+const createGame = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {}
+  })
+}
+
 const signOut = () => {
   return $.ajax({
     url: config.apiUrl + '/sign-out', // api url is stored in the file, called by config above
@@ -84,5 +95,6 @@ module.exports = {
   changePassword,
   newGame,
   newMove,
-  completeGames
+  completeGames,
+  createGame
 }

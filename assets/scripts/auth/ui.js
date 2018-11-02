@@ -1,5 +1,5 @@
 'use strict'
-// const store = require('../store.js')
+const store = require('../store.js')
 
 const signUpSuccess = data => {
   $('#message').text('Signed up successfully') // .text() method allows us to set its text in the html
@@ -55,6 +55,7 @@ const signOutSuccess = data => {
   $('#message').text('Logged Out Successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
+  $('#board-container').empty()
   console.log('signOutSuccess ran. data is:', data)
 }
 
