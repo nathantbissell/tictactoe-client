@@ -11,7 +11,9 @@ const p1 = 'X'
 const p2 = 'O'
 const playerxMoves = []
 const playeroMoves = []
-const winner = 'You win!'
+let currentPlayer = ''
+// const winner = 'You win!'
+const winningPlayer = ''
 
 const onSignUp = event => {
   event.preventDefault()
@@ -52,46 +54,28 @@ const onSquareClick = event => {
   event.preventDefault()
   const js = (event.target)
   if (store.numberOfTurns % 2 === 0 && js.innerHTML === '') {
+    currentPlayer = 'x'
     js.innerHTML = p1
     playerxMoves.push(js.id)
     store.numberOfTurns++
     console.log('js id ' + js.id)
     console.log('current array for player x: ' + playerxMoves)
-    console.log('Winning Combinations: ' + store.winningCombos)
     checkForWinner(playerxMoves, p1)
     // checkForWinner(playerxMoves, p1)
   } if (store.numberOfTurns % 2 === 1 && js.innerHTML === '') {
+    currentPlayer = 'o'
     js.innerHTML = p2
     playeroMoves.push(js.id)
     store.numberOfTurns++
     console.log('js id ' + js.id)
     console.log('current array for player o: ' + playeroMoves)
-    console.log('Winning Combinations: ' + store.winningCombos)
     checkForWinner(playeroMoves, p2)
     // checkForWinner(playeroMoves, p2)
     // forEach loop that takes the array of player o moves and searches for
     // a match in the winningCombos array.
   }
 }
-// const checkForWinner = function (array, player) {
-//   console.log('checkforwinner is running')
-//   console.log(store.numberOfTurns)
-//   if (store.numberOfTurns > 4) {
-//     for (let i = 0; i < store.winningCombos; i++) {
-//       console.log('entered for loop')
-//       if (array[i] === store.winningCombos[i]) {
-//         console.log('first match met')
-//         if (array[i++] === store.winningCombos[i++]) {
-//           console.log('second match met')
-//           if (array[i++] === store.winningCombos[i++]) {
-//             return (player + 'is the winner!')
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// combo checkForWinner function for later point if necessary.
+
 const checkForWinner = function (array, player) {
   if (store.numberOfTurns > 4) {
     const moves = Array.prototype.slice.call($('.box'))
@@ -99,61 +83,55 @@ const checkForWinner = function (array, player) {
       return square.innerHTML
     })
     console.log(results)
+    store.gameBoard = results
+    console.log(store.gameBoard)
     if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
       console.log('Match 0-1-2 top row')
+      const winningPlayer = results[0]
+      return winningPlayer
     }
     if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
       console.log('Match 0-3-6 left column')
+      const winningPlayer = results[0]
+      return winningPlayer
     }
     if (results[0] !== '' && results[0] === results[4] && results[4] === results[8]) {
       console.log('Match 0-4-8 diagonal top left to bottom right')
+      const winningPlayer = results[0]
+      return winningPlayer
     }
     if (results[1] !== '' && results[1] === results[4] && results[4] === results[7]) {
       console.log('Match 1-4-7 center column')
+      const winningPlayer = results[1]
+      return winningPlayer
     }
     if (results[2] !== '' && results[2] === results[5] && results[5] === results[8]) {
       console.log('Match 2-5-8 right column')
+      const winningPlayer = results[2]
+      return winningPlayer
     }
     if (results[3] !== '' && results[3] === results[4] && results[4] === results[5]) {
       console.log('Match 3-4-5 center row')
+      const winningPlayer = results[3]
+      return winningPlayer
     }
     if (results[2] !== '' && results[2] === results[4] && results[4] === results[6]) {
       console.log('Match 2-4-6 bottom left to top right')
+      const winningPlayer = results[2]
+      return winningPlayer
     }
     if (results[6] !== '' && results[6] === results[7] && results[7] === results[8]) {
       console.log('Match 6-7-8 bottom row')
+      const winningPlayer = results[6]
+      return winningPlayer
     }
   }
 }
 
-// for (let i = 0; i < store.winningCombos.length; i++) {
-// return store.winningCombos.find(function (combo) {
-//     console.log('combo 0: ' + results[combo[0]])
-//     console.log('combo 1: ' + results[combo[1]])
-//     console.log('combo 2: ' + results[combo[2]])
-//     if (results[combo[0]] !== '' && ((results[combo[0]] === results[combo[1]]) && (results[combo[1]] === results[combo[2]]))) {
-//       return winner
-//     } else {
-//       console.log('didnt work')
-//       return false
-//     }
-//   })
-//  console.log(player + ' is the winner')
-// return
-//     }
-//   }
-// }
-
-// }
-
-// this function takes in an event (click) on one of the 9 squares
-//  const data = getFormFields(event.target)
-// when this function is called, either player x or O will mark
-
-// that square with their game piece.
-
 const onCreateGameClick = function (event) {
+  event.preventDefault()
   api.createGame()
+  $('#game').show()
   // TO DO: save response from server in ui.handleSuccessfulCreate
   // put the game object in store
     .then(console.log) // eventually have ui.handleSuccessfulCreate
@@ -167,5 +145,6 @@ module.exports = {
   onSignOut,
   onSquareClick,
   checkForWinner,
-  onCreateGameClick
+  onCreateGameClick,
+  winningPlayer
 }

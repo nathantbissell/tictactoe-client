@@ -1,0 +1,19 @@
+// for (let i = 0; i < store.winningCombos.length; i++) {
+// return store.winningCombos.find(function (combo) {
+//     console.log('combo 0: ' + results[combo[0]])
+//     console.log('combo 1: ' + results[combo[1]])
+//     console.log('combo 2: ' + results[combo[2]])
+//     if (results[combo[0]] !== '' && ((results[combo[0]] === results[combo[1]]) && (results[combo[1]] === results[combo[2]]))) {
+//       return winner
+//     } else {
+//       console.log('didnt work')
+//       return false
+//     }
+//   })
+//  console.log(player + ' is the winner')
+// return
+//     }
+//   }
+// }
+
+// }

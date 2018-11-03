@@ -2,6 +2,7 @@
 
 const config = require('../config.js')
 const store = require('../store.js')
+const info = require('./info.js')
 
 const signUp = data => {
   return $.ajax({
@@ -15,7 +16,7 @@ const signIn = data => {
   return $.ajax({
     url: config.apiUrl + '/sign-in', // api url is stored in the file, called by config above
     method: 'POST',
-    data: data
+    data
   })
 }
 
@@ -25,7 +26,7 @@ const changePassword = function (data) {
     url: config.apiUrl + '/change-password',
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     },
     data
     // data: data
@@ -38,29 +39,30 @@ const createGame = function () {
     url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     },
     data: {}
   })
 }
 
-const signOut = () => {
+const signOut = function () {
   return $.ajax({
-    url: config.apiUrl + '/sign-out', // api url is stored in the file, called by config above
+    url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     }
   })
 }
 
 const newGame = data => {
+  console.log(store.user.token)
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     },
     data: data
   })
@@ -72,7 +74,7 @@ const newMove = data => {
     method: 'PATCH',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     },
     data: data
   })
@@ -84,7 +86,7 @@ const completeGames = () => {
     method: 'GET',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + info.user.token
     }
   })
 }
