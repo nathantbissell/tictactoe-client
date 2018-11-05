@@ -86,9 +86,8 @@ const checkForWinner = function (array, player) {
       store.winningPlayer = results[0]
       console.log(store.winningPlayer + ' ' + position)
       // return store.winningPlayer + position
-      $('wins').text(function () {
-        return store.winningPlayer + 'Wins!'
-      })
+      $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
       // }
       // if (store.winningPlayer === 'O') {
       //   $('#owins').text('O Wins!!!')
@@ -99,42 +98,49 @@ const checkForWinner = function (array, player) {
       store.winningPlayer = results[0]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[0] !== '' && results[0] === results[4] && results[4] === results[8]) {
       console.log('Match 0-4-8 diagonal top left to bottom right')
       store.winningPlayer = results[0]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[1] !== '' && results[1] === results[4] && results[4] === results[7]) {
       console.log('Match 1-4-7 center column')
       store.winningPlayer = results[1]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[2] !== '' && results[2] === results[5] && results[5] === results[8]) {
       console.log('Match 2-5-8 right column')
       store.winningPlayer = results[2]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[3] !== '' && results[3] === results[4] && results[4] === results[5]) {
       console.log('Match 3-4-5 center row')
       store.winningPlayer = results[3]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[2] !== '' && results[2] === results[4] && results[4] === results[6]) {
       console.log('Match 2-4-6 bottom left to top right')
       store.winningPlayer = results[2]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
     }
     if (results[6] !== '' && results[6] === results[7] && results[7] === results[8]) {
       console.log('Match 6-7-8 bottom row')
       store.winningPlayer = results[6]
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
+      $('wins').show()
       // if (store.winningPlayer === 'X') {
       //   $('#xwins').text('X Wins!!!')
       // }
