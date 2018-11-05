@@ -10,6 +10,7 @@ $(() => {
   $('#sign-in').on('submit', events.onSignIn)
   $('#sign-out').on('submit', events.onSignOut)
   $('#change-password').on('submit', events.onChangePassword)
+  $('#create-game').on('submit', events.onCreateGameClick)
   $('.box').on('click', events.onSquareClick)
   $('wins').on('click', events.onSquareClick)
 

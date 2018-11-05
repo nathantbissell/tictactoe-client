@@ -69,7 +69,7 @@ const createGameSuccess = data => {
   $('#message').text('Created New Game')
   $('#message').removeClass()
   $('#message').addClass('success')
-  $('#board-container').show()
+  $('.box').on('click, events.onCreateGameClick').show()
   console.log('New Game Created. Good Luck!')
 }
 

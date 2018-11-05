@@ -147,7 +147,11 @@ const checkForWinner = function (array, player) {
 
 const onCreateGameClick = function (event) {
   event.preventDefault()
-  api.createGame()
+  const data = getFormFields(event.target)
+  api.createGame(data)
+
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
 }
 // TO DO: save response from server in ui.handleSuccessfulCreate
 // put the game object in store

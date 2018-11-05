@@ -38,7 +38,7 @@ const createGame = function () {
     url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
-      Authorization: 'Token token=' + info.user.token
+      Authorization: 'Token token=' + info.token
     },
     data: {}
   })
@@ -51,19 +51,6 @@ const signOut = function () {
     headers: {
       Authorization: 'Token token=' + info.token
     }
-  })
-}
-
-const newGame = data => {
-  console.log(store.user.token)
-  return $.ajax({
-    url: config.apiUrl + '/games',
-    method: 'POST',
-    contentType: 'application/json',
-    headers: {
-      Authorization: 'Token token=' + info.user.token
-    },
-    data: data
   })
 }
 
@@ -95,7 +82,6 @@ module.exports = {
   signIn,
   signOut,
   changePassword,
-  newGame,
   newMove,
   completeGames,
   createGame
