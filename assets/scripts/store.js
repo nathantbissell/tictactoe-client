@@ -3,7 +3,8 @@
 const numberOfTurns = 0
 const p1 = 'X'
 const p2 = 'O'
-const currentPlayer = 'X'
+const currentPlayer = ''
+const winningPlayer = ''
 
 const game = {
   start: false,
@@ -32,5 +33,6 @@ module.exports = {
   gameBoard,
   p1,
   p2,
-  currentPlayer
+  currentPlayer,
+  winningPlayer
 }

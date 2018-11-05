@@ -1,7 +1,8 @@
 'use strict'
-const store = require('../store.js')
+const info = require('./info.js')
 
 const signUpSuccess = data => {
+  info.token = data.user.token
   $('#message').text('Signed up successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -9,7 +10,7 @@ const signUpSuccess = data => {
 }
 
 const signInSuccess = data => {
-  console.log(data.user.token)
+  info.token = data.user.token
   $('#message').text('Signed in successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -17,6 +18,7 @@ const signInSuccess = data => {
 }
 
 const signUpFailure = data => {
+  info.token = data.user.token
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -24,12 +26,14 @@ const signUpFailure = data => {
 }
 
 const signInFailure = data => {
+  info.token = data.user.token
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signInFailure ran. data is:', data)
 }
 const changePasswordSuccess = data => {
+  info.token = data.user.token
   $('#message').text('Password Changed Successfully')
   $('#message').removeClass()
   $('#message').addClass('Success')
@@ -37,6 +41,7 @@ const changePasswordSuccess = data => {
 }
 
 const changePasswordFailure = data => {
+  info.token = data.user.token
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -44,6 +49,7 @@ const changePasswordFailure = data => {
 }
 
 const signOutFailure = data => {
+  info.token = data.user.token
   $('#message').text('Error Logging Out')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -51,7 +57,7 @@ const signOutFailure = data => {
 }
 
 const signOutSuccess = data => {
-  store.user = null
+  info.user = null
   $('#message').text('Logged Out Successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -59,6 +65,20 @@ const signOutSuccess = data => {
   console.log('signOutSuccess ran. data is:', data)
 }
 
+const createGameSuccess = data => {
+  $('#message').text('Created New Game')
+  $('#message').removeClass()
+  $('#message').addClass('success')
+  $('#board-container').show()
+  console.log('New Game Created. Good Luck!')
+}
+
+const createGameFailure = data => {
+  $('#message').text('Create Game Error')
+  $('#message').removeClass()
+  $('#message').addClass('failure')
+  $('#board-container').empty()
+}
 // wrap in object, export object
 
 // $('.square').on('click', events.onSquareClick)
@@ -73,5 +93,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutFailure,
-  signOutSuccess
+  signOutSuccess,
+  createGameSuccess,
+  createGameFailure
 }

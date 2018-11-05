@@ -34,7 +34,6 @@ const changePassword = function (data) {
 }
 
 const createGame = function () {
-  console.log(store.user.token)
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -50,7 +49,7 @@ const signOut = function () {
     url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
-      Authorization: 'Token token=' + info.user.token
+      Authorization: 'Token token=' + info.token
     }
   })
 }
@@ -70,7 +69,7 @@ const newGame = data => {
 
 const newMove = data => {
   return $.ajax({
-    url: config.apiUrl + '/games/:id',
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     contentType: 'application/json',
     headers: {
