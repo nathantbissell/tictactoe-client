@@ -1,24 +1,26 @@
 'use strict'
+const info = {
+}
 
 const games = [
   {
-    id: 1,
+    id: undefined,
     cells: ["","","","","","","","",""],
-    over: true,
+    over: false,
     player_x: {
-      id: 1,
+      id: undefined,
       email: ''
     }
-    player_o: {
-      id: 0,
-      email: ''
-    }
+  }
   ]
-}
+
+  const player = {
+    wins: undefined,
+    losses: undefined,
+    gamesPlayed: undefined
+  }
 
 const numberOfTurns = 0
-const p1 = 'X'
-const p2 = 'O'
 const currentPlayer = ''
 const winningPlayer = ''
 
@@ -40,11 +42,10 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 // const userSignedIn = !!!!!!!!!!!!!!!!!!!!!!!!!
 
 module.exports = {
+  info,
   numberOfTurns,
   game,
   gameBoard,
-  p1,
-  p2,
   player_x,
   player_o,
   currentPlayer,

@@ -65,6 +65,8 @@ const signOutSuccess = data => {
   $('#message').removeClass()
   $('#message').addClass('success')
   $('#board-container').empty()
+  $('#sign-up').show()
+  $('#sign-in').show()
   console.log('signOutSuccess ran. data is:', data)
 }
 

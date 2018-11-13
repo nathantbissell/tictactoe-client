@@ -7,11 +7,8 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
-const p1 = 'X'
-const p2 = 'O'
-const playerxMoves = []
-const playeroMoves = []
-// const winner = 'You win!'
+let playeroMoves = []
+let playerxMoves = []
 let position = ''
 
 const onSignUp = event => {
@@ -27,11 +24,9 @@ const onSignUp = event => {
 const onSignIn = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  // take this data and send it to our server
-  // using an http request (POST)
   api.signIn(data)
-    .then(ui.signInSuccess) // if your request was successful
-    .catch(ui.signInFailure) // if your request failed
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
 }
 
 const onChangePassword = event => {
@@ -54,23 +49,15 @@ const onSquareClick = event => {
   const js = (event.target)
   if (store.numberOfTurns % 2 === 0 && js.innerHTML === '' && store.winningPlayer === '') {
     store.currentPlayer = 'x'
-    js.innerHTML = p1
-    // playerxMoves.push(js.id)
+    js.innerHTML = store.currentPlayer //p1
     store.numberOfTurns++
-    checkForWinner(playerxMoves, p1)
+    checkForWinner(playerxMoves, store.currentPlayer) //p1
   } if (store.numberOfTurns % 2 === 1 && js.innerHTML === '' && store.winningPlayer === '') {
     store.currentPlayer = 'o'
-    js.innerHTML = p2
-    // playeroMoves.push(js.id)
+    js.innerHTML = store.currentPlayer //p2
     store.numberOfTurns++
-    checkForWinner(playeroMoves, p2)
-    // forEach loop that takes the array of player o moves and searches for
-    // a match in the winningCombos array.
+    checkForWinner(playeroMoves, store.currentPlayer) //p2
   }
-}
-
-const togglePlayer = function (player) {
-
 }
 
 const checkForWinner = function (array, player) {
@@ -78,15 +65,17 @@ const checkForWinner = function (array, player) {
   const results = moves.map((square) => {
     return square.innerHTML
   })
-  console.log(results)
+  console.log(results) // we want to pass this to our API as the game board!
   store.gameBoard = results
   if (store.numberOfTurns > 4) {
     if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
+      // put all this shit in a method you fucking idiot!
       position = ('Match 0-1-2 top row')
       store.winningPlayer = results[0]
       console.log(store.winningPlayer + ' ' + position)
       $('.wins').html(store.winningPlayer + ' Wins!!!')
       $('.wins').show()
+      store.games.cells.push(results)
     }
     if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
       console.log('Match 0-3-6 left column')
@@ -155,13 +144,18 @@ const onCreateGameClick = function (event) {
 
 const onResetGame = function (event) {
   event.preventDefault()
-  api.resetGame()
-  // $('#')
+  // api.resetGame()
+  // $('restartGame').
 }
 const printWinner = function () {
   event.preventDefault()
   $('wins').show()
 }
+
+const sendToServer = function (currBoard, currPlayer) {
+// JSON.stringify()
+}
+
 
 module.exports = {
   onSignUp,
@@ -174,6 +168,6 @@ module.exports = {
   onResetGame,
   position,
   printWinner,
-  togglePlayer
+  sendToServer
 
 }

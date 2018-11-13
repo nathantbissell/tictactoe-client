@@ -68,7 +68,7 @@ const newMove = data => {
 
 const completeGames = () => {
   return $.ajax({
-    url: config.apiUrl + '/games/:id',
+    url: config.apiUrl + '/games?over=true',
     method: 'GET',
     contentType: 'application/json',
     headers: {
