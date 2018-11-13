@@ -55,22 +55,22 @@ const onSquareClick = event => {
   if (store.numberOfTurns % 2 === 0 && js.innerHTML === '' && store.winningPlayer === '') {
     store.currentPlayer = 'x'
     js.innerHTML = p1
-    playerxMoves.push(js.id)
+    // playerxMoves.push(js.id)
     store.numberOfTurns++
-    console.log('js id ' + js.id)
-    console.log('current array for player x: ' + playerxMoves)
     checkForWinner(playerxMoves, p1)
   } if (store.numberOfTurns % 2 === 1 && js.innerHTML === '' && store.winningPlayer === '') {
     store.currentPlayer = 'o'
     js.innerHTML = p2
-    playeroMoves.push(js.id)
+    // playeroMoves.push(js.id)
     store.numberOfTurns++
-    console.log('js id ' + js.id)
-    console.log('current array for player o: ' + playeroMoves)
     checkForWinner(playeroMoves, p2)
     // forEach loop that takes the array of player o moves and searches for
     // a match in the winningCombos array.
   }
+}
+
+const togglePlayer = function (player) {
+
 }
 
 const checkForWinner = function (array, player) {
@@ -85,13 +85,8 @@ const checkForWinner = function (array, player) {
       position = ('Match 0-1-2 top row')
       store.winningPlayer = results[0]
       console.log(store.winningPlayer + ' ' + position)
-      // return store.winningPlayer + position
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
-      // }
-      // if (store.winningPlayer === 'O') {
-      //   $('#owins').text('O Wins!!!')
-      // }
+      $('.wins').html(store.winningPlayer + ' Wins!!!')
+      $('.wins').show()
     }
     if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
       console.log('Match 0-3-6 left column')
@@ -141,12 +136,6 @@ const checkForWinner = function (array, player) {
       console.log(store.winningPlayer)
       $('wins').text(store.winningPlayer + ' Wins!!!')
       $('wins').show()
-      // if (store.winningPlayer === 'X') {
-      //   $('#xwins').text('X Wins!!!')
-      // }
-      // if (store.winningPlayer === 'O') {
-      //   $('#owins').text('O Wins!!!')
-      // }
     }
   }
 }
@@ -184,5 +173,7 @@ module.exports = {
   onCreateGameClick,
   onResetGame,
   position,
-  printWinner
+  printWinner,
+  togglePlayer
+
 }

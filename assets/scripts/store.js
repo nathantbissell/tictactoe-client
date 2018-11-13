@@ -1,17 +1,29 @@
 'use strict'
 
+const games = [
+  {
+    id: 1,
+    cells: ["","","","","","","","",""],
+    over: true,
+    player_x: {
+      id: 1,
+      email: ''
+    }
+    player_o: {
+      id: 0,
+      email: ''
+    }
+  ]
+}
+
 const numberOfTurns = 0
 const p1 = 'X'
 const p2 = 'O'
 const currentPlayer = ''
 const winningPlayer = ''
 
-const game = {
-  start: false,
-  // if game has started, game board appears and has 0 marks on it
-  end: true
-  // if end is set to true, winning message will appear on page and users cannot enter any more
-}
+const player_x = ''
+const player_o = ''
 
 const gameBoard = ['', '', '', '', '', '', '', '', '']
 // this function will run when turn number 4 has been ran (numberOfTurns > 4)
@@ -33,6 +45,8 @@ module.exports = {
   gameBoard,
   p1,
   p2,
+  player_x,
+  player_o,
   currentPlayer,
   winningPlayer
 }

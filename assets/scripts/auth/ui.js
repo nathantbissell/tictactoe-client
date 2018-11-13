@@ -6,6 +6,7 @@ const signUpSuccess = data => {
   $('#message').text('Signed up successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
+  $('#change-password').hide()
   console.log('signUpSuccess ran. data is:', data)
 }
 
@@ -14,6 +15,8 @@ const signInSuccess = data => {
   $('#message').text('Signed in successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
+  $('#sign-up').hide()
+  $('#sign-in').hide()
   console.log('signInSuccess ran. data is:', data)
 }
 
@@ -79,11 +82,6 @@ const createGameFailure = data => {
   $('#message').addClass('failure')
   $('#board-container').empty()
 }
-// wrap in object, export object
-
-// $('.square').on('click', events.onSquareClick)
-
-// onSquareClick
 
 module.exports = {
   signUpSuccess,
