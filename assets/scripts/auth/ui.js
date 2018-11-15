@@ -1,8 +1,8 @@
 'use strict'
-const info = require('./info.js')
+const store = require('../store.js')
 
 const signUpSuccess = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Signed up successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -11,7 +11,7 @@ const signUpSuccess = data => {
 }
 
 const signInSuccess = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Signed in successfully') // .text() method allows us to set its text in the html
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -21,7 +21,7 @@ const signInSuccess = data => {
 }
 
 const signUpFailure = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -29,14 +29,14 @@ const signUpFailure = data => {
 }
 
 const signInFailure = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signInFailure ran. data is:', data)
 }
 const changePasswordSuccess = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Password Changed Successfully')
   $('#message').removeClass()
   $('#message').addClass('Success')
@@ -44,7 +44,7 @@ const changePasswordSuccess = data => {
 }
 
 const changePasswordFailure = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Error on sign up')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -52,7 +52,7 @@ const changePasswordFailure = data => {
 }
 
 const signOutFailure = data => {
-  info.token = data.user.token
+  store.user = data.user
   $('#message').text('Error Logging Out')
   $('#message').removeClass()
   $('#message').addClass('failure')
@@ -60,7 +60,7 @@ const signOutFailure = data => {
 }
 
 const signOutSuccess = data => {
-  info.user = null
+  store.user = null
   $('#message').text('Logged Out Successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
@@ -74,9 +74,18 @@ const createGameSuccess = data => {
   $('#message').text('Created New Game')
   $('#message').removeClass()
   $('#message').addClass('success')
-  $('.box').on('click, events.onCreateGameClick').show()
+  store.gameId = data.game.id
+  $('.box').show()
   console.log('New Game Created. Good Luck!')
+  console.log(store.gameId)
 }
+// .on('click, events.onCreateGameClick')
+
+// const resetGame = () => {
+//   $('#restartGame').on('click') = function () {
+    
+//   }
+// }
 
 const createGameFailure = data => {
   $('#message').text('Create Game Error')
@@ -86,6 +95,7 @@ const createGameFailure = data => {
 }
 
 module.exports = {
+  // resetGame,
   signUpSuccess,
   signInSuccess,
   signUpFailure,

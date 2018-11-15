@@ -9,7 +9,15 @@ const store = require('../store.js')
 
 let playeroMoves = []
 let playerxMoves = []
-let position = ''
+let winningMessage = ''
+
+let numberOfTurns = 0
+let currentPlayer = ''
+let winningPlayer = ''
+let player_x = ''
+let player_o = ''
+let gameId = null
+let gameBoard = ['', '', '', '', '', '', '', '', '']
 
 const onSignUp = event => {
   event.preventDefault()
@@ -47,93 +55,85 @@ const onSignOut = event => {
 const onSquareClick = event => {
   event.preventDefault()
   const js = (event.target)
-  if (store.numberOfTurns % 2 === 0 && js.innerHTML === '' && store.winningPlayer === '') {
-    store.currentPlayer = 'x'
-    js.innerHTML = store.currentPlayer //p1
-    store.numberOfTurns++
-    checkForWinner(playerxMoves, store.currentPlayer) //p1
-  } if (store.numberOfTurns % 2 === 1 && js.innerHTML === '' && store.winningPlayer === '') {
-    store.currentPlayer = 'o'
-    js.innerHTML = store.currentPlayer //p2
-    store.numberOfTurns++
-    checkForWinner(playeroMoves, store.currentPlayer) //p2
+  if (numberOfTurns % 2 === 0 && js.innerHTML === '' && winningPlayer === '') {
+    currentPlayer = 'x'
+    js.innerHTML = currentPlayer //p1
+    numberOfTurns++
+    checkForWinner(playerxMoves, currentPlayer) //p1
+  } if (numberOfTurns % 2 === 1 && js.innerHTML === '' && winningPlayer === '') {
+    currentPlayer = 'o'
+    js.innerHTML = currentPlayer //p2
+    numberOfTurns++
+    checkForWinner(playeroMoves, currentPlayer) //p2
   }
 }
-
-const checkForWinner = function (array, player) {
+const checkForWinner = function () {
   const moves = Array.prototype.slice.call($('.box'))
   const results = moves.map((square) => {
     return square.innerHTML
   })
   console.log(results) // we want to pass this to our API as the game board!
-  store.gameBoard = results
-  if (store.numberOfTurns > 4) {
+  gameBoard = results
+  if (numberOfTurns > 4) {
     if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
       // put all this shit in a method you fucking idiot!
-      position = ('Match 0-1-2 top row')
-      store.winningPlayer = results[0]
-      console.log(store.winningPlayer + ' ' + position)
-      $('.wins').html(store.winningPlayer + ' Wins!!!')
-      $('.wins').show()
-      store.games.cells.push(results)
+      winningMessage = ('Match 0-1-2 top row')
+      winningPlayer = results[0]
+      sendWinner(winningPlayer)
+      // store.games.cells.push(results)
     }
     if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
-      console.log('Match 0-3-6 left column')
-      store.winningPlayer = results[0]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 0-3-6 left column')
+      winningPlayer = results[0]
+      sendWinner(winningPlayer)
     }
     if (results[0] !== '' && results[0] === results[4] && results[4] === results[8]) {
-      console.log('Match 0-4-8 diagonal top left to bottom right')
-      store.winningPlayer = results[0]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 0-4-8 diagonal top left to bottom right')
+      winningPlayer = results[0]
+      sendWinner(winningPlayer)
     }
     if (results[1] !== '' && results[1] === results[4] && results[4] === results[7]) {
-      console.log('Match 1-4-7 center column')
-      store.winningPlayer = results[1]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 1-4-7 center column')
+      winningPlayer = results[1]
+      sendWinner(winningPlayer)
     }
     if (results[2] !== '' && results[2] === results[5] && results[5] === results[8]) {
-      console.log('Match 2-5-8 right column')
-      store.winningPlayer = results[2]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 2-5-8 right column')
+      winningPlayer = results[2]
+      sendWinner(winningPlayer)
     }
     if (results[3] !== '' && results[3] === results[4] && results[4] === results[5]) {
-      console.log('Match 3-4-5 center row')
-      store.winningPlayer = results[3]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 3-4-5 center row')
+      winningPlayer = results[3]
+      sendWinner(winningPlayer)
     }
     if (results[2] !== '' && results[2] === results[4] && results[4] === results[6]) {
-      console.log('Match 2-4-6 bottom left to top right')
-      store.winningPlayer = results[2]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 2-4-6 bottom left to top right')
+      winningPlayer = results[2]
+      sendWinner(winningPlayer)
     }
     if (results[6] !== '' && results[6] === results[7] && results[7] === results[8]) {
-      console.log('Match 6-7-8 bottom row')
-      store.winningPlayer = results[6]
-      console.log(store.winningPlayer)
-      $('wins').text(store.winningPlayer + ' Wins!!!')
-      $('wins').show()
+      winningMessage = ('Match 6-7-8 bottom row')
+      winningPlayer = results[6]
+      sendWinner(winningPlayer)
+      
     }
   }
+}
+
+const sendWinner = function (winner) {
+  event.preventDefault()
+  winningPlayer = winner
+  $(".msg").text(winningPlayer + ' wins!!!')
+  $(".msg").show()
+  console.log(winningPlayer)
+  console.log(winningMessage)
 }
 
 const onCreateGameClick = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.createGame(data)
-
+  api.createGame()
     .then(ui.createGameSuccess)
     .catch(ui.createGameFailure)
 }
@@ -144,12 +144,10 @@ const onCreateGameClick = function (event) {
 
 const onResetGame = function (event) {
   event.preventDefault()
-  // api.resetGame()
+  $('.box').html('')
+  numberOfTurns = 0
+  // api.resetGame() should clear game board
   // $('restartGame').
-}
-const printWinner = function () {
-  event.preventDefault()
-  $('wins').show()
 }
 
 const sendToServer = function (currBoard, currPlayer) {
@@ -158,6 +156,15 @@ const sendToServer = function (currBoard, currPlayer) {
 
 
 module.exports = {
+  store,
+  gameId,
+  numberOfTurns,
+  game,
+  gameBoard,
+  player_x,
+  player_o,
+  currentPlayer,
+  winningPlayer,
   onSignUp,
   onSignIn,
   onChangePassword,
@@ -166,8 +173,7 @@ module.exports = {
   checkForWinner,
   onCreateGameClick,
   onResetGame,
-  position,
-  printWinner,
+  winningMessage,
   sendToServer
 
 }

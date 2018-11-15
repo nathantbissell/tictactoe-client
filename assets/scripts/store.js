@@ -1,33 +1,29 @@
 'use strict'
-const info = {
+
+const store = {
 }
 
-const games = [
-  {
-    id: undefined,
-    cells: ["","","","","","","","",""],
-    over: false,
-    player_x: {
-      id: undefined,
-      email: ''
-    }
-  }
-  ]
+module.exports = store 
 
-  const player = {
-    wins: undefined,
-    losses: undefined,
-    gamesPlayed: undefined
-  }
+// const games = [
+//   {
+//     id: undefined,
+//     cells: ["","","","","","","","",""],
+//     over: false,
+//     player_x: {
+//       id: undefined,
+//       email: ''
+//     }
+//   }
+//   ]
 
-const numberOfTurns = 0
-const currentPlayer = ''
-const winningPlayer = ''
+//   const player = {
+//     wins: undefined,
+//     losses: undefined,
+//     gamesPlayed: undefined
+//   }
 
-const player_x = ''
-const player_o = ''
 
-const gameBoard = ['', '', '', '', '', '', '', '', '']
 // this function will run when turn number 4 has been ran (numberOfTurns > 4)
 // if true, run a loop that will take the array of player's current position points
 // compare to winningCombos, if any are true, game.end = true
@@ -41,13 +37,14 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 
 // const userSignedIn = !!!!!!!!!!!!!!!!!!!!!!!!!
 
-module.exports = {
-  info,
-  numberOfTurns,
-  game,
-  gameBoard,
-  player_x,
-  player_o,
-  currentPlayer,
-  winningPlayer
-}
+// module.exports = {
+//   user,
+//   gameId,
+//   numberOfTurns,
+//   game,
+//   gameBoard,
+//   player_x,
+//   player_o,
+//   currentPlayer,
+//   winningPlayer
+// }
