@@ -12,8 +12,7 @@ let winningPlayer = ''
 let player_x = ''
 let player_o = ''
 let gameBoard = ['', '', '', '', '', '', '', '', '']
-let data = ''
-let serverData = null
+let serverData
 
 const onSignUp = event => {
   event.preventDefault()
@@ -61,14 +60,7 @@ const onSquareClick = event => {
     numberOfTurns++
     checkForWinner() //p2 playeroMoves, currentPlayer
   }
-  const index = $(event.target).attr('#id')
-  // .replace('.box', '')
-  console.log('index ' + index)
-  const value = currentPlayer
-  console.log('value ' + value)
-  const over = checkGameOver()
-  console.log('over? ' + over)
-  sendToServer(index, value, over)
+  sendToServer()
 }
 
 const checkForWinner = function () {
@@ -166,9 +158,15 @@ const onResetGame = function (event) {
   // $('restartGame').
 }
 
-const sendToServer = function (index, value, over) {
-  // JSON.stringify()
-  // const game = store.gameId
+const sendToServer = function () {
+
+const index = $(event.target).attr('id')
+console.log('index ' + index)
+const value = currentPlayer
+console.log('value ' + value)
+const over = checkGameOver()
+console.log('over? ' + over)
+
   const serverData = {
     game: {
       cell: {
@@ -178,9 +176,11 @@ const sendToServer = function (index, value, over) {
       over: over
     }
   }
-  console.log('sending that shit to server')
+  if (over === false) {
+  console.log('sending to server')
   console.log(JSON.stringify(serverData))
   api.newMove(JSON.stringify(serverData))
+  }
 }
 
 module.exports = {
@@ -203,6 +203,5 @@ module.exports = {
   onResetGame,
   winningMessage,
   sendToServer,
-  checkGameOver,
-  data
+  checkGameOver
 }
