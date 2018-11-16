@@ -1,23 +1,19 @@
 'use strict'
-// main pipeline for your code
-// events requires all of your different sections of code
 
 const getFormFields = require('../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('../store.js')
 
-let playeroMoves = []
-let playerxMoves = []
 let winningMessage = ''
-
 let numberOfTurns = 0
 let currentPlayer = ''
 let winningPlayer = ''
 let player_x = ''
 let player_o = ''
-let gameId = null
 let gameBoard = ['', '', '', '', '', '', '', '', '']
+let data = ''
+let serverData = null
 
 const onSignUp = event => {
   event.preventDefault()
@@ -40,8 +36,6 @@ const onSignIn = event => {
 const onChangePassword = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  // take this data and send it to our server
-  // using an http request (POST)
   api.changePassword(data)
     .then(ui.changePasswordSuccess) // if your request was successful
     .catch(ui.changePasswordFailure) // if your request failed
@@ -55,28 +49,40 @@ const onSignOut = event => {
 const onSquareClick = event => {
   event.preventDefault()
   const js = (event.target)
+
   if (numberOfTurns % 2 === 0 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'x'
     js.innerHTML = currentPlayer //p1
     numberOfTurns++
-    checkForWinner(playerxMoves, currentPlayer) //p1
+    checkForWinner() //p1 playerxMoves, currentPlayer
   } if (numberOfTurns % 2 === 1 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'o'
     js.innerHTML = currentPlayer //p2
     numberOfTurns++
-    checkForWinner(playeroMoves, currentPlayer) //p2
+    checkForWinner() //p2 playeroMoves, currentPlayer
   }
+  const index = $(event.target).attr('#id')
+  // .replace('.box', '')
+  console.log('index ' + index)
+  const value = currentPlayer
+  console.log('value ' + value)
+  const over = checkGameOver()
+  console.log('over? ' + over)
+  sendToServer(index, value, over)
 }
+
 const checkForWinner = function () {
   const moves = Array.prototype.slice.call($('.box'))
   const results = moves.map((square) => {
+    console.log(square.innerHTML)
     return square.innerHTML
+
+    // we need a .indexOf on the x or o being called here.
   })
-  console.log(results) // we want to pass this to our API as the game board!
+  console.log(results)
   gameBoard = results
   if (numberOfTurns > 4) {
     if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
-      // put all this shit in a method you fucking idiot!
       winningMessage = ('Match 0-1-2 top row')
       winningPlayer = results[0]
       sendWinner(winningPlayer)
@@ -121,6 +127,12 @@ const checkForWinner = function () {
   }
 }
 
+const checkGameOver = function () {
+  if (winningPlayer === '') {
+    return false
+  } else
+  return true
+}
 const sendWinner = function (winner) {
   event.preventDefault()
   winningPlayer = winner
@@ -145,19 +157,35 @@ const onCreateGameClick = function (event) {
 const onResetGame = function (event) {
   event.preventDefault()
   $('.box').html('')
+  $('.msg').hide()
+  winningPlayer = ''
+  winningMessage = ''
+  gameBoard = ['', '', '', '', '', '', '', '', '']
   numberOfTurns = 0
   // api.resetGame() should clear game board
   // $('restartGame').
 }
 
-const sendToServer = function (currBoard, currPlayer) {
-// JSON.stringify()
+const sendToServer = function (index, value, over) {
+  // JSON.stringify()
+  // const game = store.gameId
+  const serverData = {
+    game: {
+      cell: {
+        index: index,
+        value: value
+      },
+      over: over
+    }
+  }
+  console.log('sending that shit to server')
+  console.log(JSON.stringify(serverData))
+  api.newMove(JSON.stringify(serverData))
 }
-
 
 module.exports = {
   store,
-  gameId,
+  serverData,
   numberOfTurns,
   game,
   gameBoard,
@@ -174,6 +202,7 @@ module.exports = {
   onCreateGameClick,
   onResetGame,
   winningMessage,
-  sendToServer
-
+  sendToServer,
+  checkGameOver,
+  data
 }

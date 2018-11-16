@@ -78,6 +78,8 @@ const createGameSuccess = data => {
   $('.box').show()
   console.log('New Game Created. Good Luck!')
   console.log(store.gameId)
+  console.log(store.user)
+  // console.log(store.email) UNDEFINED
 }
 // .on('click, events.onCreateGameClick')
 
