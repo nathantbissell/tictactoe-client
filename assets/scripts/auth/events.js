@@ -117,6 +117,11 @@ const checkForWinner = function () {
       
     }
   }
+  if (numberOfTurns >= 9) {
+    winningPlayer = 'tie'
+    $('.msg').text('nobody wins! Its a tie!')
+    $('.msg').show()
+  }
 }
 
 const checkGameOver = function () {
@@ -137,6 +142,12 @@ const sendWinner = function (winner) {
 const onCreateGameClick = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  $('.box').html('')
+  $('.msg').hide()
+  winningPlayer = ''
+  winningMessage = ''
+  gameBoard = ['', '', '', '', '', '', '', '', '']
+  numberOfTurns = 0
   api.createGame()
     .then(ui.createGameSuccess)
     .catch(ui.createGameFailure)
