@@ -20,15 +20,13 @@ const signIn = data => {
 }
 
 const changePassword = function (data) {
-  console.log('data is ', data)
   return $.ajax({
     url: config.apiUrl + '/change-password',
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
-    // data: data
+    data: data
   })
 }
 
@@ -65,7 +63,7 @@ const newMove = data => {
   })
 }
 
-const completeGames = () => {
+const getGames = () => {
   return $.ajax({
     url: config.apiUrl + '/games?over=true',
     method: 'GET',
@@ -82,6 +80,6 @@ module.exports = {
   signOut,
   changePassword,
   newMove,
-  completeGames,
+  getGames,
   createGame
 }

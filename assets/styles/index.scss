@@ -72,17 +72,11 @@ body {
   display: none;
   background-color: #abd1bb;
 }
-
-// .owins {
-//   font-size: 100px;
-//   background-color: #abd1bb;
-// }
+#change-password, #sign-out, #create-game, #restartGame, #previousGames {
+  display: none;
+}
 
 .tie {
   font-size: 100px;
   background-color: #abd1bb;
-}
-
-#game {
-  // display: none;
 }

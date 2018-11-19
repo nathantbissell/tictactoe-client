@@ -51,11 +51,13 @@ const onSquareClick = event => {
 
   if (numberOfTurns % 2 === 0 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'x'
+    $('#message').text('It s currently O turn')
     js.innerHTML = currentPlayer //p1
     numberOfTurns++
     checkForWinner() //p1 playerxMoves, currentPlayer
   } if (numberOfTurns % 2 === 1 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'o'
+    $('#message').text('It s currently X turn')
     js.innerHTML = currentPlayer //p2
     numberOfTurns++
     checkForWinner() //p2 playeroMoves, currentPlayer
@@ -152,10 +154,6 @@ const onCreateGameClick = function (event) {
     .then(ui.createGameSuccess)
     .catch(ui.createGameFailure)
 }
-// TO DO: save response from server in ui.handleSuccessfulCreate
-// put the game object in store
-// .then(console.log) // eventually have ui.handleSuccessfulCreate
-//  .catch(console.error) // eventually have ui.handleErrorCreate
 
 const onResetGame = function (event) {
   event.preventDefault()
@@ -194,6 +192,11 @@ console.log('over? ' + over)
   }
 }
 
+const showGames = function (event) {
+  event.preventDefault()
+  api.getGames(store.user.id)
+}
+
 module.exports = {
   store,
   serverData,
@@ -214,5 +217,6 @@ module.exports = {
   onResetGame,
   winningMessage,
   sendToServer,
-  checkGameOver
+  checkGameOver,
+  showGames
 }

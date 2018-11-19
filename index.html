@@ -55,8 +55,8 @@
               <input type="submit" value="Create Game"/>
             </fieldset>
           </form>
-
-          <p class="msg">It's currently x's turn</p>
+          <p id = "message"> </p>
+          <p class="msg"> </p>
           <div class="board-container flex-column" id="game">
               <div class="board flex-wrap">
                   <div class="box" id="0"></div>
@@ -76,6 +76,15 @@
                 <input type="submit" value="Restart"/>
               </fieldset>
             </form>
+
+            <form id="previousGames" class="border">
+              <fieldset>
+                <input type="submit" value="Previous Games"/>
+            </fieldset>
+            </form>
+
+            <p class='get-games'></p>
+            
 
 
     </body>

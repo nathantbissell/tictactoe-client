@@ -3,8 +3,8 @@
 curl http://tic-tac-toe.wdibos.com \
   --include \
   --request PATCH \
-  --headers "Content-Type: application/json" \
   --headers "Authorization: Token token=${TOKEN}" \
+  --headers "Content-Type: application/json" \
   --data '{
     "passwords": {
       "old": "'"${OLD_PASSWORD}"'",
