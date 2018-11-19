@@ -14,6 +14,8 @@ h1 {
 
 p {
   font-size: 70px;
+  justify-content: center;
+  text-align: center;
   background-color: #abd1bb;
 }
 
@@ -58,7 +60,7 @@ body {
   justify-content: center;
   width: 100px;
   text-align: center;
-  font-size: 55px;
+  font-size: 50px;
   display: none;
 }
 
@@ -70,6 +72,8 @@ body {
 .msg {
   font-size: 70px;
   display: none;
+  justify-content: center;
+  text-align: center;
   background-color: #abd1bb;
 }
 #change-password, #sign-out, #create-game, #restartGame, #previousGames {

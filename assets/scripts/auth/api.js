@@ -63,14 +63,15 @@ const newMove = data => {
   })
 }
 
-const getGames = () => {
+const getGames = (data) => {
   return $.ajax({
     url: config.apiUrl + '/games?over=true',
     method: 'GET',
     contentType: 'application/json',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    }
+    },
+    data: data
   })
 }
 

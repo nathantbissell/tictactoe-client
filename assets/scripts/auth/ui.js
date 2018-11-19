@@ -20,6 +20,7 @@ const signInSuccess = data => {
   $('#sign-in').hide()
   $('#change-password').show()
   $('#create-game').show()
+  $('#previousGames').show()
   console.log('signInSuccess ran. data is:', data)
 }
 
@@ -83,6 +84,7 @@ const createGameSuccess = data => {
   $('#change-password').hide()
   store.gameId = data.game.id
   $('.box').show()
+  $('#sign-out').show()
   console.log('New Game Created. Good Luck!')
   console.log(store.gameId)
   console.log(store.user)
@@ -94,6 +96,10 @@ const createGameFailure = data => {
   $('#message').addClass('failure')
   $('#board-container').empty()
 }
+
+// const onGetGames = data => {
+//   $('#message').text(data.games.length + ' games have been played by this user')
+// }
 
 module.exports = {
   // resetGame,

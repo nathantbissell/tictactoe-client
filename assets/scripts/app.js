@@ -12,7 +12,7 @@ $(() => {
   $('#create-game').on('submit', events.onCreateGameClick)
   $('.box').on('click', events.onSquareClick)
   $('#restartGame').on('click', events.onResetGame)
-  $('get-games').on('click', events.showGames)
+  $('#previousGames').on('click', events.showGames)
 
   // $('board-container').on('create')
 })

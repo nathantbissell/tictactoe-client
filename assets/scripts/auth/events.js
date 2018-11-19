@@ -123,6 +123,7 @@ const checkForWinner = function () {
     winningPlayer = 'tie'
     $('.msg').text('nobody wins! Its a tie!')
     $('.msg').show()
+    $('#message').hide()
   }
 }
 
@@ -194,7 +195,10 @@ console.log('over? ' + over)
 
 const showGames = function (event) {
   event.preventDefault()
+  console.log('user id ' + store.user.id)
+  console.log('games ' + store.games)
   api.getGames(store.user.id)
+  $('#message').text(store.games + ' games have been played by this user')
 }
 
 module.exports = {
