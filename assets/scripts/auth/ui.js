@@ -77,6 +77,7 @@ const createGameSuccess = data => {
   store.gameId = data.game.id
   $('.box').show()
   $('#sign-out').show()
+  $('#restartGame').show()
 }
 
 const createGameFailure = data => {
