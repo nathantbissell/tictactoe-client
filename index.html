@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <header><h1>Tic Tac Toe</h1></header>
+      <form id="sign-up" class="border">
+          <fieldset>
+            <legend>Sign Up</legend>
+            <input type="text" name="credentials[email]" placeholder="Email" />
+            <input type="password" name="credentials[password]" placeholder="Password" />
+            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm" />
+            <input type="submit" value="Sign up!" />
+          </fieldset>
+        </form>
+        <form id="sign-in" class="border">
+        <fieldset>
+          <legend>Sign In</legend>
+          <input type="text" name="credentials[email]" placeholder="Email" />
+          <input type="password" name="credentials[password]" placeholder="Password" />
+          <input type="submit" value="Sign in!" />
+
+        </fieldset>
+        </form>
+
+        <form id="change-password" class="border">
+          <fieldset>
+          <legend>Change Password</legend>
+          <input type="password" name="passwords[old]" placeholder="Old Password">
+          <input type="password" name="passwords[new]" placeholder="New Password">
+          <input type="submit" value="Change Password!">
+
+        </fieldset>
+        </form>
+
+          <form id="sign-out" class="border">
+            <fieldset>
+              <legend>Sign Out</legend>
+              <input type="submit" value="Sign Out"/>
+            </fieldset>
+          </form>
+
+          <form id='create-game' class="border">
+            <fieldset>
+              <legend> Create New Game </legend>
+              <input type="submit" value="Create Game"/>
+            </fieldset>
+          </form>
+          <p id = "message"> </p>
+          <p class="msg"> </p>
+          <div class="board-container flex-column" id="game">
+              <div class="board flex-wrap">
+                  <div class="box" id="0"></div>
+                  <div class="box" id="1"></div>
+                  <div class="box" id="2"></div>
+                  <div class="box" id="3"></div>
+                  <div class="box" id="4"></div>
+                  <div class="box" id="5"></div>
+                  <div class="box" id="6"></div>
+                  <div class="box" id="7"></div>
+                  <div class="box" id="8"></div>
+            </div>
+          </div>
+
+            <form id="restartGame" class="border">
+              <fieldset>
+                <input type="submit" value="Restart"/>
+              </fieldset>
+            </form>
+
+            <form id="previousGames" class="border">
+              <fieldset>
+                <input type="submit" value="Previous Games"/>
+            </fieldset>
+            </form>
+
+            <!-- <p class='get-games'></p> -->
+            
+
+
+    </body>
+</html>
