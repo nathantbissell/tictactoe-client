@@ -13,6 +13,4 @@ $(() => {
   $('.box').on('click', events.onSquareClick)
   $('#restartGame').on('click', events.onResetGame)
   $('#previousGames').on('click', events.showGames)
-
-  // $('board-container').on('create')
 })

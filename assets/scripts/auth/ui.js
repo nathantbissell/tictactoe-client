@@ -8,7 +8,6 @@ const signUpSuccess = data => {
   $('#message').addClass('success')
   document.getElementById('sign-up').reset();
   $('#change-password').hide()
-  console.log('signUpSuccess ran. data is:', data)
 }
 
 const signInSuccess = data => {
@@ -21,7 +20,6 @@ const signInSuccess = data => {
   $('#change-password').show()
   $('#create-game').show()
   $('#previousGames').show()
-  console.log('signInSuccess ran. data is:', data)
 }
 
 const signUpFailure = data => {
@@ -30,7 +28,6 @@ const signUpFailure = data => {
   $('#message').removeClass()
   $('#message').addClass('failure')
   document.getElementById('sign-up').reset()
-  console.log('signUpFailure ran. data is:', data)
 }
 
 const signInFailure = data => {
@@ -39,14 +36,12 @@ const signInFailure = data => {
   $('#message').removeClass()
   $('#message').addClass('failure')
   document.getElementById('sign-in').reset();
-  console.log('signInFailure ran. data is:', data)
 }
 const changePasswordSuccess = data => {
   $('#message').text('Password Changed Successfully')
   $('#message').removeClass()
   $('#message').addClass('Success')
   document.getElementById('change-password').reset();
-  console.log('changePasswordSuccess ran. data is:', data)
 }
 
 const changePasswordFailure = data => {
@@ -54,7 +49,6 @@ const changePasswordFailure = data => {
   $('#message').removeClass()
   $('#message').addClass('failure')
   document.getElementById('change-password').reset();
-  console.log('changePasswordFailure ran. data is:', data)
 }
 
 const signOutFailure = data => {
@@ -62,7 +56,6 @@ const signOutFailure = data => {
   $('#message').text('Error Logging Out')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signOutFailure ran. data is:', data)
 }
 
 const signOutSuccess = data => {
@@ -74,7 +67,6 @@ const signOutSuccess = data => {
   $('#sign-up').show()
   $('#sign-in').show()
   document.getElementById('sign-in').reset();
-  console.log('signOutSuccess ran. data is:', data)
 }
 
 const createGameSuccess = data => {
@@ -85,9 +77,6 @@ const createGameSuccess = data => {
   store.gameId = data.game.id
   $('.box').show()
   $('#sign-out').show()
-  console.log('New Game Created. Good Luck!')
-  console.log(store.gameId)
-  console.log(store.user)
 }
 
 const createGameFailure = data => {
@@ -97,12 +86,7 @@ const createGameFailure = data => {
   $('#board-container').empty()
 }
 
-// const onGetGames = data => {
-//   $('#message').text(data.games.length + ' games have been played by this user')
-// }
-
 module.exports = {
-  // resetGame,
   signUpSuccess,
   signInSuccess,
   signUpFailure,

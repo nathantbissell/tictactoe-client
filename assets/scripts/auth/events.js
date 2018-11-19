@@ -9,19 +9,15 @@ let winningMessage = ''
 let numberOfTurns = 0
 let currentPlayer = ''
 let winningPlayer = ''
-let player_x = ''
-let player_o = ''
 let gameBoard = ['', '', '', '', '', '', '', '', '']
 let serverData
 
 const onSignUp = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  // take this data and send it to our server
-  // using an http request (POST)
   api.signUp(data)
-    .then(ui.signUpSuccess) // if your request was successful
-    .catch(ui.signUpFailure) // if your request failed
+    .then(ui.signUpSuccess)
+    .catch(ui.signUpFailure)
 }
 
 const onSignIn = event => {
@@ -36,14 +32,14 @@ const onChangePassword = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   api.changePassword(data)
-    .then(ui.changePasswordSuccess) // if your request was successful
-    .catch(ui.changePasswordFailure) // if your request failed
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
 }
 const onSignOut = event => {
   event.preventDefault()
   api.signOut()
-    .then(ui.signOutSuccess) // if your request was successful
-    .catch(ui.signOutFailure) // if your request failed
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
 }
 const onSquareClick = event => {
   event.preventDefault()
@@ -52,15 +48,15 @@ const onSquareClick = event => {
   if (numberOfTurns % 2 === 0 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'x'
     $('#message').text('It s currently O turn')
-    js.innerHTML = currentPlayer //p1
+    js.innerHTML = currentPlayer
     numberOfTurns++
-    checkForWinner() //p1 playerxMoves, currentPlayer
+    checkForWinner()
   } if (numberOfTurns % 2 === 1 && js.innerHTML === '' && winningPlayer === '') {
     currentPlayer = 'o'
     $('#message').text('It s currently X turn')
-    js.innerHTML = currentPlayer //p2
+    js.innerHTML = currentPlayer
     numberOfTurns++
-    checkForWinner() //p2 playeroMoves, currentPlayer
+    checkForWinner()
   }
   sendToServer()
 }
@@ -68,19 +64,14 @@ const onSquareClick = event => {
 const checkForWinner = function () {
   const moves = Array.prototype.slice.call($('.box'))
   const results = moves.map((square) => {
-    console.log(square.innerHTML)
     return square.innerHTML
-
-    // we need a .indexOf on the x or o being called here.
   })
-  console.log(results)
   gameBoard = results
   if (numberOfTurns > 4) {
     if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
       winningMessage = ('Match 0-1-2 top row')
       winningPlayer = results[0]
       sendWinner(winningPlayer)
-      // store.games.cells.push(results)
     }
     if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
       winningMessage = ('Match 0-3-6 left column')
@@ -138,8 +129,6 @@ const sendWinner = function (winner) {
   winningPlayer = winner
   $(".msg").text(winningPlayer + ' wins!!!')
   $(".msg").show()
-  console.log(winningPlayer)
-  console.log(winningMessage)
 }
 
 const onCreateGameClick = function (event) {
@@ -171,11 +160,8 @@ const onResetGame = function (event) {
 const sendToServer = function () {
 
 const index = $(event.target).attr('id')
-console.log('index ' + index)
 const value = currentPlayer
-console.log('value ' + value)
 const over = checkGameOver()
-console.log('over? ' + over)
 
   const serverData = {
     game: {
@@ -187,16 +173,12 @@ console.log('over? ' + over)
     }
   }
   if (over === false) {
-  console.log('sending to server')
-  console.log(JSON.stringify(serverData))
   api.newMove(JSON.stringify(serverData))
   }
 }
 
 const showGames = function (event) {
   event.preventDefault()
-  console.log('user id ' + store.user.id)
-  console.log('games ' + store.games)
   api.getGames(store.user.id)
   $('#message').text(store.games + ' games have been played by this user')
 }
@@ -207,8 +189,6 @@ module.exports = {
   numberOfTurns,
   game,
   gameBoard,
-  player_x,
-  player_o,
   currentPlayer,
   winningPlayer,
   onSignUp,
