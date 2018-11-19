@@ -66,6 +66,14 @@ const signOutSuccess = data => {
   $('#board-container').empty()
   $('#sign-up').show()
   $('#sign-in').show()
+  $('.msg').hide()
+  $('#board-container').empty()
+  $('.box').hide()
+  $('#sign-out').hide()
+  $('.box').html('')
+  $('#restartGame').hide()
+  $('#create-game').hide()
+  $('#previousGames').hide()
   document.getElementById('sign-in').reset();
 }
 
